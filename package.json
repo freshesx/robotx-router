@@ -2,8 +2,13 @@
   "name": "@robotx/router",
   "version": "0.1.0",
   "description": "Session router for robotx dashboard.",
-  "main": "dist/index.common.js",
+  "main": "dist/main.common.js",
+  "module": "dist/main.esm.js",
   "repository": "https://github.com/freshesx/robotx-router",
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c ./scripts/rollup/build.js",
+    "docs:api": "rm -rf docs/api && esdoc -c scripts/esdoc/esdoc.json"
+  }
 }
