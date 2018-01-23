@@ -1,0 +1,9 @@
+{
+  "name": "@robotx/router",
+  "version": "0.1.0",
+  "description": "Session router for robotx dashboard.",
+  "main": "dist/index.common.js",
+  "repository": "https://github.com/freshesx/robotx-router",
+  "author": "ChaselWu <chasel.wu@vitualreaty.com>",
+  "license": "MIT"
+}
