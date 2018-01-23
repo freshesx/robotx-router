@@ -1,0 +1,30 @@
+{
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "flow",
+        [
+          "env",
+          {
+            "targets": {
+              "node": "8.9.0"
+            }
+          }
+        ]
+      ],
+      "comments": true
+    }
+  }
+}
