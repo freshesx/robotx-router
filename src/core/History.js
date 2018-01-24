@@ -18,7 +18,7 @@ export default class History {
 
   constructor () {
     // @todo update init increment from sessionStorage.
-    this.increment = 0
+    this.increment = 1
     this.collection = this.pickFromStorage()
     // @todo this.collection 最大的 id 赋值
   }
