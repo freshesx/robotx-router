@@ -37,7 +37,6 @@ describe('History', () => {
     // setup
     window.sessionStorage = emptySessionStorage
     const history = new History()
-    
     const firstItem = { name: 'products' }
     const secondItem = { name: 'cases' }
 
