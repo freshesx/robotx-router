@@ -76,8 +76,23 @@ export default class History {
     if (item.nextId) return this.findItem(item.nextId)
   }
 
-  updateItem (historyItemId:number, { queries = {} }:{ queries:Object } = {}):?HistoryItem {
+  updateItem (historyItemId:number, { queries, meta }:{ queries:?Object, meta:?Object } = {}):?HistoryItem {
+    const item = this.findItem(historyItemId)
 
+    if (!item) {
+      throw new Error('Cannot find item that you want to update.')
+    }
+
+    if (queries) {
+      item.queries = queries
+    }
+
+    if (meta) {
+      item.meta = meta
+    }
+
+    this.saveIntoStorage()
+    return item
   }
 
   /**

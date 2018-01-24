@@ -47,6 +47,44 @@ describe('Test empty history', () => {
   })
 })
 
+describe('Test one history item', () => {
+  let history
+
+  beforeAll(() => {
+    // Mock sessionStorage
+    window.sessionStorage = {
+      getItem: () => null,
+      setItem: () => null
+    }
+  })
+
+  beforeEach(() => {
+    history = new History()
+    history.addItem({ name: 'level.1' })
+  })
+
+  it('throw error because cannot find exist id', () => {
+    expect(() => history.updateItem(10)).toThrowError(
+      'Cannot find item that you want to update.'
+    )
+  })
+
+  it('should returns old data, if queries and meta is not exist', () => {
+    const item = history.updateItem(1)
+    expect(item.queries).toEqual({})
+    expect(item.meta).toEqual({})
+  })
+
+  it('should returns new data, if queries and meta is exist', () => {
+    const item = history.updateItem(1, {
+      queries: { page: 1 },
+      meta: { title: 'Hello' }
+    })
+    expect(item.queries).toEqual({ page: 1 })
+    expect(item.meta).toEqual({ title: 'Hello' })
+  })
+})
+
 describe('Test three history items', () => {
   let history
 
