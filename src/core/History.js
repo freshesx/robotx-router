@@ -42,19 +42,19 @@ export default class History {
     return item
   }
 
-  updateItem () {
-
+  findItem (historyItemId:number):?HistoryItem {
+    // Use reverse, because what you want to get is the latest value.
+    return this.collection.reverse().find(item => item.id === historyItemId)
   }
 
-  prevItem () {
-
+  prevItem (historyItemId:number):?HistoryItem {
   }
 
   nextItem () {
 
   }
 
-  findItem () {
+  updateItem (historyItemId:number, { queries = {} }:{ queries:Object } = {}):?HistoryItem {
 
   }
 

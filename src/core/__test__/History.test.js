@@ -37,3 +37,32 @@ describe('Test empty history', () => {
     expect(() => history.addItem({})).toThrowError()
   })
 })
+
+describe('Test three history items', () => {
+  let history
+
+  beforeAll(() => {
+    // Mock sessionStorage
+    window.sessionStorage = {
+      getItem: () => null,
+      setItem: () => null
+    }
+  })
+
+  beforeEach(() => {
+    history = new History()
+    history.addItem({ name: 'level.1' })
+    history.addItem({ name: 'level.2' })
+    history.addItem({ name: 'level.3' })
+  })
+
+  it('Find item by id', () => {
+    expect(history.findItem(1).name).toEqual('level.1')
+    expect(history.findItem(2).name).toEqual('level.2')
+    expect(history.findItem(3).name).toEqual('level.3')
+  })
+
+  it('should return undefined, if you find item that don\'t exist.', () => {
+    expect(history.findItem(10)).toBeUndefined()
+  })
+})
