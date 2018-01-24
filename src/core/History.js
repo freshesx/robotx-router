@@ -27,7 +27,7 @@ export default class History {
     return this.increment++
   }
 
-  addItem (selfItem:HistoryItem, parentItem:HistoryItem|void):void {
+  addItem (selfItem:HistoryItem, parentItem:HistoryItem|void):HistoryItem {
     selfItem.id = this.getNextId()
     selfItem.parent = parentItem || null
     selfItem.child = null
