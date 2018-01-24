@@ -1,7 +1,9 @@
 import History from '../History'
 
-describe('Init router and create history', () => {
-  beforeEach(() => {
+describe('Test empty history', () => {
+  let history
+
+  beforeAll(() => {
     // Mock sessionStorage
     window.sessionStorage = {
       getItem: () => null,
@@ -9,36 +11,29 @@ describe('Init router and create history', () => {
     }
   })
 
-  it('returns the history item without parent item', () => {
-    const history = new History()
-    const selfItem = { name: 'products' }
-    const savedItem = history.addItem(selfItem)
+  beforeEach(() => {
+    history = new History()
+  })
 
-    expect(savedItem).toEqual({
+  it('should returns level.1 without prev and next item.', () => {
+    const outputItem = history.addItem({ name: 'level.1' })
+
+    expect(outputItem).toEqual({
       id: 1,
-      name: 'products',
-      parent: null,
-      child: null,
+      name: 'level.1',
+      prev: null,
+      next: null,
       queries: {}
     })
   })
 
-  it('throw error when add a nameless history item', () => {
-    const history = new History()
-    const selfItem = {}
-
-    expect(() => {
-      history.addItem(selfItem)
-    }).toThrowError()
+  it('should returns level.1 with next item that\'s name is level.2', () => {
+    const level1Item = history.addItem({ name: 'level.1 ' })
+    const level2Item = history.addItem({ name: 'level.2' }, level1Item)
+    expect(level2Item.prev.name).toEqual(level1Item.name)
   })
 
-  it('Second item\'s parent id should be equal to the first item\'s id', () => {
-    const history = new History()
-    const firstItem = { name: 'products' }
-    const secondItem = { name: 'cases' }
-    const firstSavedItem = history.addItem(firstItem)
-    const secondSavedItem = history.addItem(secondItem, firstItem)
-
-    expect(secondSavedItem.parent.id).toEqual(firstSavedItem.id)
+  it('throw error when add a nameless item', () => {
+    expect(() => history.addItem({})).toThrowError()
   })
 })
