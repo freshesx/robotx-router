@@ -1,14 +1,18 @@
 import { storagePrefix } from '../helpers/storage'
 
 interface HistoryItem {
-  id: number | void,
+  id: number,
   name: string,
-  queries: Object | void, // @todo Study flow docs to find the solution of key-value structure
-  parent: HistoryItem | void | null,
-  child: HistoryItem | void | null
+  queries: ?Object,
+  meta: ?Object,
+  prevId: ?number,
+  nextId: ?number
 }
 
 export default class History {
+  /**
+   * History items storage
+   */
   collection: Array
 
   /**
@@ -17,10 +21,9 @@ export default class History {
   increment: number
 
   constructor () {
+    this.collection = this.pickFromStorage()
     // @todo update init increment from sessionStorage.
     this.increment = 1
-    this.collection = this.pickFromStorage()
-    // @todo this.collection 最大的 id 赋值
   }
 
   getNextId ():number {
@@ -35,10 +38,11 @@ export default class History {
     // New currentItem to aviod change item
     // Set unique id for item
     // Set prev and next
-    const currentItem = {
+    const currentItem:HistoryItem = {
       id: this.getNextId(),
       name: options.name,
       queries: options.queries || {},
+      meta: options.meta || {},
       prevId: undefined,
       nextId: undefined
     }
@@ -46,11 +50,11 @@ export default class History {
     // If prevItem is exits, then set prevItem's next is current item
     if (prevItemId) {
       const prevItem:HistoryItem = this.findItem(prevItemId)
-      
+      // Could not find previous item.
       if (!prevItem) {
         throw new Error('Could not find the prevItem in history.')
       }
-
+      // Set together
       prevItem.nextId = currentItem.id
       currentItem.prevId = prevItem.id
     }
