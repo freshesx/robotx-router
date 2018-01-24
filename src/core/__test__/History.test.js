@@ -23,7 +23,8 @@ describe('Test empty history', () => {
       name: 'level.1',
       prevId: undefined,
       nextId: undefined,
-      queries: {}
+      queries: {},
+      meta: {}
     })
   })
 
