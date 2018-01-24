@@ -27,19 +27,38 @@ export default class History {
     return this.increment++
   }
 
-  addItem (item:HistoryItem, prevItem:HistoryItem|void):HistoryItem {
-    item.id = this.getNextId()
-    item.prev = prevItem || null
-    item.next = null
-    if (!item.queries) item.queries = {}
-    if (!item.name) {
-      throw new Error('You should set route name')
+  addItem (options:Object, prevItemId:?number):HistoryItem {
+    if (!options.name) {
+      throw new Error('Could not find item name.')
     }
 
-    this.collection.push(item)
+    // New currentItem to aviod change item
+    // Set unique id for item
+    // Set prev and next
+    const currentItem = {
+      id: this.getNextId(),
+      name: options.name,
+      queries: options.queries || {},
+      prevId: undefined,
+      nextId: undefined
+    }
+
+    // If prevItem is exits, then set prevItem's next is current item
+    if (prevItemId) {
+      const prevItem:HistoryItem = this.findItem(prevItemId)
+      
+      if (!prevItem) {
+        throw new Error('Could not find the prevItem in history.')
+      }
+
+      prevItem.nextId = currentItem.id
+      currentItem.prevId = prevItem.id
+    }
+
+    this.collection.push(currentItem)
     this.saveIntoStorage()
 
-    return item
+    return currentItem
   }
 
   findItem (historyItemId:number):?HistoryItem {
