@@ -1,15 +1,17 @@
 import History from '../History'
-import { emptySessionStorage } from './mocks/sessionStorage'
 
-describe('History', () => {
-  it('#addItem: add a history item without parent', () => {
-    const selfItem = {
-      name: 'products'
+describe('Init router and create history', () => {
+  beforeEach(() => {
+    // Mock sessionStorage
+    window.sessionStorage = {
+      getItem: () => null,
+      setItem: () => null
     }
+  })
 
-    window.sessionStorage = emptySessionStorage
-
+  it('returns the history item without parent item', () => {
     const history = new History()
+    const selfItem = { name: 'products' }
     const savedItem = history.addItem(selfItem)
 
     expect(savedItem).toEqual({
@@ -21,27 +23,22 @@ describe('History', () => {
     })
   })
 
-  it('#addItem: add a history item without it\'s name', () => {
-    const selfItem = {}
-
-    window.sessionStorage = emptySessionStorage
-
+  it('throw error when add a nameless history item', () => {
     const history = new History()
+    const selfItem = {}
 
     expect(() => {
       history.addItem(selfItem)
     }).toThrowError()
   })
 
-  it('#addItem: add a history item and then add it\'s child history item', () => {
-    // setup
-    window.sessionStorage = emptySessionStorage
+  it('Second item\'s parent id should be equal to the first item\'s id', () => {
     const history = new History()
     const firstItem = { name: 'products' }
     const secondItem = { name: 'cases' }
-
     const firstSavedItem = history.addItem(firstItem)
     const secondSavedItem = history.addItem(secondItem, firstItem)
+
     expect(secondSavedItem.parent.id).toEqual(firstSavedItem.id)
   })
 })
