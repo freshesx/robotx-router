@@ -38,6 +38,8 @@ export default class History {
 
     this.collection.push(selfItem)
     this.saveIntoStorage()
+
+    return selfItem
   }
 
   updateItem () {
