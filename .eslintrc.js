@@ -20,7 +20,7 @@ module.exports = {
   },
   globals: {
     describe: true,
-    test: true,
+    it: true,
     expect: true
   }
 }
