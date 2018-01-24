@@ -5,6 +5,10 @@ module.exports = {
   mapCoverage: true,
   collectCoverage: true,
   coverageDirectory: '<rootDir>/scripts/jest/coverage',
+  collectCoverageFrom: [
+    'src/**/*.js',
+    '!src/**/__test__/**'
+  ],
   moduleFileExtensions: [
     'js'
   ],
