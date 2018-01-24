@@ -11,9 +11,14 @@ interface HistoryItem {
 export default class History {
   collection: Array
 
+  /**
+   * The history item id storage
+   */
   increment: number
 
   constructor () {
+    // @todo update init increment from sessionStorage.
+    this.increment = 0
     this.collection = this.pickFromStorage()
     // @todo this.collection 最大的 id 赋值
   }
