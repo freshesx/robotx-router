@@ -27,19 +27,19 @@ export default class History {
     return this.increment++
   }
 
-  addItem (selfItem:HistoryItem, parentItem:HistoryItem|void):HistoryItem {
-    selfItem.id = this.getNextId()
-    selfItem.parent = parentItem || null
-    selfItem.child = null
-    if (!selfItem.queries) selfItem.queries = {}
-    if (!selfItem.name) {
+  addItem (item:HistoryItem, prevItem:HistoryItem|void):HistoryItem {
+    item.id = this.getNextId()
+    item.prev = prevItem || null
+    item.next = null
+    if (!item.queries) item.queries = {}
+    if (!item.name) {
       throw new Error('You should set route name')
     }
 
-    this.collection.push(selfItem)
+    this.collection.push(item)
     this.saveIntoStorage()
 
-    return selfItem
+    return item
   }
 
   updateItem () {
