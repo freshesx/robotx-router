@@ -22,9 +22,9 @@ export default class History {
     return this.increment++
   }
 
-  addItem (selfItem:HistoryItem, parentItem:HistoryItem):void {
+  addItem (selfItem:HistoryItem, parentItem:HistoryItem|void):void {
     selfItem.id = this.getNextId()
-    selfItem.parent = parentItem
+    selfItem.parent = parentItem || null
     selfItem.child = null
     if (!selfItem.queries) selfItem.queries = {}
     if (!selfItem.name) {
