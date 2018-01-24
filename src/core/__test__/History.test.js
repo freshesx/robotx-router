@@ -123,11 +123,47 @@ describe('Test three history items', () => {
   })
 
   it('should returns level.3, if you find next item of level.2', () => {
-    console.log(history.nextItem(2))
     expect(history.nextItem(2).name).toEqual('level.3')
   })
 
   it('should returns undefined, if you find next item of level.3', () => {
     expect(history.nextItem(3)).toBeUndefined()
+  })
+})
+
+describe('Test sessionStorage', () => {
+  it('should returns empty array, if cannot find session storage item.', () => {
+    window.sessionStorage = {
+      getItem: () => null,
+      setItem: () => null
+    }
+
+    const history = new History()
+    expect(history.collection).toEqual([])
+  })
+
+  it('should returns history item', () => {
+    const output = [{
+      id: 1,
+      name: 'level.1',
+      queries: {},
+      meta: {},
+      prevId: undefined,
+      nextId: 2
+    }, {
+      id: 2,
+      name: 'level.2',
+      queries: {},
+      meta: { title: 'Hello' },
+      prevId: 1,
+      nextId: undefined
+    }]
+    window.sessionStorage = {
+      getItem: () => JSON.stringify(output)
+    }
+
+    const history = new History()
+    expect(history.collection).toEqual(output)
+    expect(history.increment).toEqual(2)
   })
 })
