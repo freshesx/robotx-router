@@ -9,7 +9,9 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c ./scripts/rollup/build.js",
-    "docs:api": "rm -rf docs/api && esdoc -c scripts/esdoc/esdoc.json"
+    "test": "yarn run unit",
+    "docs:api": "rm -rf docs/api && esdoc -c scripts/esdoc/esdoc.json",
+    "unit": "jest --config scripts/jest/jest.conf.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -30,6 +32,7 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.1.4",
     "rollup": "^0.51.8",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-eslint": "^4.0.0"
