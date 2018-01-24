@@ -67,10 +67,13 @@ export default class History {
   }
 
   prevItem (historyItemId:number):?HistoryItem {
+    const item = this.findItem(historyItemId)
+    if (item.prevId) return this.findItem(item.prevId)
   }
 
-  nextItem () {
-
+  nextItem (historyItemId:number):?HistoryItem {
+    const item = this.findItem(historyItemId)
+    if (item.nextId) return this.findItem(item.nextId)
   }
 
   updateItem (historyItemId:number, { queries = {} }:{ queries:Object } = {}):?HistoryItem {

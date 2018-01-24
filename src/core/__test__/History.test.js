@@ -60,9 +60,9 @@ describe('Test three history items', () => {
 
   beforeEach(() => {
     history = new History()
-    history.addItem({ name: 'level.1' })
-    history.addItem({ name: 'level.2' })
-    history.addItem({ name: 'level.3' })
+    const level1 = history.addItem({ name: 'level.1' })
+    const level2 = history.addItem({ name: 'level.2' }, level1.id)
+    history.addItem({ name: 'level.3' }, level2.id)
   })
 
   it('Find item by id', () => {
@@ -73,5 +73,22 @@ describe('Test three history items', () => {
 
   it('should return undefined, if you find item that don\'t exist.', () => {
     expect(history.findItem(10)).toBeUndefined()
+  })
+
+  it('should returns undefined, if you find previous item of level.1.', () => {
+    expect(history.prevItem(1)).toBeUndefined()
+  })
+
+  it('should returns level.1, if you find previous item of level.2', () => {
+    expect(history.prevItem(2).name).toEqual('level.1')
+  })
+
+  it('should returns level.3, if you find next item of level.2', () => {
+    console.log(history.nextItem(2))
+    expect(history.nextItem(2).name).toEqual('level.3')
+  })
+
+  it('should returns undefined, if you find next item of level.3', () => {
+    expect(history.nextItem(3)).toBeUndefined()
   })
 })
