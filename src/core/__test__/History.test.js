@@ -2,7 +2,7 @@ import History from '../History'
 import { emptySessionStorage } from './mocks/sessionStorage'
 
 describe('History', () => {
-  test('#addItem: add a history item without parent', () => {
+  it('#addItem: add a history item without parent', () => {
     const selfItem = {
       name: 'products'
     }
@@ -21,7 +21,7 @@ describe('History', () => {
     })
   })
 
-  test('#addItem: add a history item without it\'s name', () => {
+  it('#addItem: add a history item without it\'s name', () => {
     const selfItem = {}
 
     window.sessionStorage = emptySessionStorage
@@ -33,7 +33,7 @@ describe('History', () => {
     }).toThrowError()
   })
 
-  test('#addItem: add a history item and then add it\'s child history item', () => {
+  it('#addItem: add a history item and then add it\'s child history item', () => {
     // setup
     window.sessionStorage = emptySessionStorage
     const history = new History()
