@@ -9,7 +9,7 @@ module.exports = {
   },
   extends: 'standard',
   // add your custom rules here
-  'rules': {
+  rules: {
     'no-useless-escape': 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
@@ -22,6 +22,7 @@ module.exports = {
     describe: true,
     it: true,
     expect: true,
+    beforeAll: true,
     beforeEach: true
   }
 }
