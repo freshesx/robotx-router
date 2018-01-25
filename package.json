@@ -11,7 +11,8 @@
     "build": "rollup -c ./scripts/rollup/build.js",
     "test": "yarn run unit",
     "docs:api": "rm -rf docs/api && esdoc -c scripts/esdoc/esdoc.json",
-    "unit": "jest --config scripts/jest/jest.conf.js"
+    "unit": "jest --config scripts/jest/jest.conf.js",
+    "example": "node examples/server.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
