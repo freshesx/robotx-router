@@ -1,13 +1,6 @@
 import Task from '../Task'
 import History from '../History'
 
-beforeAll(() => {
-  window.sessionStorage = {
-    getItem: () => null,
-    setItem: () => null
-  }
-})
-
 describe('Test empty task', () => {
   let task
 
