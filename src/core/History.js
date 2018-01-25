@@ -99,8 +99,9 @@ export default class History {
   /**
    * Pick out collection from storage
    * @protected
+   * @return {Array<HistoryItem>}
    */
-  pickFromStorage ():Array<mixed> {
+  pickFromStorage ():Array<HistoryItem> {
     const output:(string | null) = window.sessionStorage.getItem(
       storagePrefix('HISTORY')
     )
@@ -108,13 +109,13 @@ export default class History {
     // default value
     if (typeof output !== 'string') return []
 
-    // @todo update Array<mixed> to interface.
     return JSON.parse(output)
   }
 
   /**
    * Save collection into storage
    * @protected
+   * @return {void}
    */
   saveIntoStorage ():void {
     const output:string = JSON.stringify(this.collection)
