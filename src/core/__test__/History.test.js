@@ -3,14 +3,6 @@ import History from '../History'
 describe('Test empty history', () => {
   let history
 
-  beforeAll(() => {
-    // Mock sessionStorage
-    window.sessionStorage = {
-      getItem: () => null,
-      setItem: () => null
-    }
-  })
-
   beforeEach(() => {
     history = new History()
   })
@@ -51,14 +43,6 @@ describe('Test empty history', () => {
 describe('Test one history item', () => {
   let history
 
-  beforeAll(() => {
-    // Mock sessionStorage
-    window.sessionStorage = {
-      getItem: () => null,
-      setItem: () => null
-    }
-  })
-
   beforeEach(() => {
     history = new History()
     history.addItem({ name: 'level.1' })
@@ -88,14 +72,6 @@ describe('Test one history item', () => {
 
 describe('Test three history items', () => {
   let history
-
-  beforeAll(() => {
-    // Mock sessionStorage
-    window.sessionStorage = {
-      getItem: () => null,
-      setItem: () => null
-    }
-  })
 
   beforeEach(() => {
     history = new History()
