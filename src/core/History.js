@@ -27,10 +27,6 @@ export default class History {
     this.increment = this.findMaxIncrement()
   }
 
-  getNextId ():number {
-    return this.increment++
-  }
-
   addItem (options:Object, prevItemId:?number):HistoryItem {
     if (!options.name) {
       throw new Error('Could not find item name.')
@@ -135,5 +131,14 @@ export default class History {
     return maps.length > 0
       ? Math.max(...maps) // output max value
       : 1 // increment default value
+  }
+
+  /**
+   * Get unique id
+   * @private
+   * @return {number}
+   */
+  getNextId ():number {
+    return this.increment++
   }
 }
