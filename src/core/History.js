@@ -73,7 +73,7 @@ export default class History {
 
   /**
    * Find the specify item
-   * @param {number} historyItemId 
+   * @param {number} historyItemId
    * @return {HistoryItem}
    */
   findItem (historyItemId:number):?HistoryItem {
