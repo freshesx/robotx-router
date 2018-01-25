@@ -19,38 +19,44 @@ interface componentItem {
   component: Object|Function
 }
 
+interface routesConfig {
+  routes: Array<Object>
+}
+
 export default class Router {
   records:Array<RecordItem>
   tasks:Array<TaskItem>
   components:Array<componentItem>
 
   recordId: number
+  taskId: number
 
   /**
    * Define router config.
    */
-  constructor (options) {
+  constructor (options: routesConfig) {
     this.records = []
     this.tasks = []
     this.components = options.routes
 
     // private variable
     this.recordId = 1
+    this.taskId = 1
   }
 
   addTask (recordName:string) {
     const record:RecordItem = this.addRecord(recordName)
 
     const task:TaskItem = {
-      id: this.newId(),
+      id: this.newTaskId(),
       recordId: record.id
     }
 
     this.tasks.push(task)
   }
 
-  newId ():number {
-    return new Date().getTime()
+  newTaskId ():number {
+    return this.taskId++
   }
 
   newRecordId ():number {
