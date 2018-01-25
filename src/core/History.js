@@ -20,6 +20,9 @@ export default class History {
    */
   increment: number
 
+  /**
+   * Constructor, init collection from session storage, and set increment.
+   */
   constructor () {
     // Pick from session storage
     this.collection = this.pickFromStorage()
@@ -27,6 +30,12 @@ export default class History {
     this.increment = this.findMaxIncrement()
   }
 
+  /**
+   * Add new item and set its previous item
+   * @param {Object} options some item options
+   * @param {number} prevItemId specify previous item
+   * @return {HistoryItem}
+   */
   addItem (options:Object, prevItemId:?number):HistoryItem {
     if (!options.name) {
       throw new Error('Could not find item name.')
@@ -62,21 +71,43 @@ export default class History {
     return currentItem
   }
 
+  /**
+   * Find the specify item
+   * @param {number} historyItemId 
+   * @return {HistoryItem}
+   */
   findItem (historyItemId:number):?HistoryItem {
     // Use reverse, because what you want to get is the latest value.
     return this.collection.reverse().find(item => item.id === historyItemId)
   }
 
+  /**
+   * Find previous of the specify item
+   * @param {number} historyItemId
+   * @return {HistoryItem}
+   */
   prevItem (historyItemId:number):?HistoryItem {
     const item = this.findItem(historyItemId)
     if (item.prevId) return this.findItem(item.prevId)
   }
 
+  /**
+   * Find next of the specify item
+   * @param {number} historyItemId
+   * @return {HistoryItem}
+   */
   nextItem (historyItemId:number):?HistoryItem {
     const item = this.findItem(historyItemId)
     if (item.nextId) return this.findItem(item.nextId)
   }
 
+  /**
+   * Update queries or meta of the specify item
+   * @param {number} historyItemId
+   * @param {Object} params
+   * @param {Object} params.queries
+   * @param {Object} params.meta
+   */
   updateItem (historyItemId:number, { queries, meta }:{ queries:?Object, meta:?Object } = {}):?HistoryItem {
     const item = this.findItem(historyItemId)
 
