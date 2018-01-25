@@ -20,3 +20,20 @@ a {
 a:hover {
   color: #4fc08d;
 }
+
+.tasks {
+  display: flex;
+}
+
+.task {
+  flex: 1;
+  background: #eee;
+  padding: 8px;
+}
+
+.task-plus {
+  width: 20px;
+  flex: none;
+  text-align: center;
+  cursor: pointer;
+}
