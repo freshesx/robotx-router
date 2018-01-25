@@ -159,11 +159,15 @@ describe('Test sessionStorage', () => {
       nextId: undefined
     }]
     window.sessionStorage = {
-      getItem: () => JSON.stringify(output)
+      getItem: () => JSON.stringify(output),
+      setItem: () => null
     }
 
     const history = new History()
     expect(history.collection).toEqual(output)
-    expect(history.increment).toEqual(2)
+    expect(history.increment).toEqual(3)
+
+    const products = history.addItem({ name: 'products' })
+    expect(products.id).toEqual(3)
   })
 })

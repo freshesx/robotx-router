@@ -129,7 +129,7 @@ export default class History {
     const maps = this.collection.map(item => item.id)
 
     return maps.length > 0
-      ? Math.max(...maps) // output max value
+      ? Math.max(...maps) + 1 // output new max value
       : 1 // increment default value
   }
 
