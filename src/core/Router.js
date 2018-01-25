@@ -27,11 +27,15 @@ export default class Router {
 
   }
 
-  pushNew (routeName:string, routeQueries:object) {
+  pushNew (routeName:string, routeQueries:Object) {
 
   }
 
   destroy (taskId:number, needActiveTaskId:number) {
+
+  }
+
+  move () {
 
   }
 }
