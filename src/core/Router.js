@@ -44,6 +44,10 @@ export default class Router {
     this.taskId = 1
   }
 
+  newTaskId ():number {
+    return this.taskId++
+  }
+
   addTask (recordName:string) {
     const record:RecordItem = this.addRecord(recordName)
 
@@ -53,10 +57,6 @@ export default class Router {
     }
 
     this.tasks.push(task)
-  }
-
-  newTaskId ():number {
-    return this.taskId++
   }
 
   newRecordId ():number {
