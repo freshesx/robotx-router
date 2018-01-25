@@ -21,9 +21,10 @@ export default class History {
   increment: number
 
   constructor () {
+    // Pick from session storage
     this.collection = this.pickFromStorage()
-    // @todo update init increment from sessionStorage.
-    this.increment = 1
+    // Must run findMaxIncrement after pickFromStorage method
+    this.increment = this.findMaxIncrement()
   }
 
   getNextId ():number {
@@ -122,5 +123,17 @@ export default class History {
   saveIntoStorage ():void {
     const output:string = JSON.stringify(this.collection)
     window.sessionStorage.setItem(storagePrefix('HISTORY'), output)
+  }
+
+  /**
+   * Find max increment value from collection
+   * @protected
+   */
+  findMaxIncrement ():number {
+    const maps = this.collection.map(item => item.id)
+
+    return maps.length > 0
+      ? Math.max(...maps) // output max value
+      : 1 // increment default value
   }
 }
