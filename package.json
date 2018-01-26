@@ -43,6 +43,7 @@
     "rollup-plugin-eslint": "^4.0.0",
     "vue": "^2.5.13",
     "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.4"
   },
