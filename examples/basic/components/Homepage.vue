@@ -23,11 +23,9 @@ export default {
   methods: {
     submit (event) {
       event.preventDefault()
-      console.log('hi', this.models)
-      this.$rxRouter.updateTask({
+      this.$feRouter.update({
         query: this.models
       })
-      console.log('this', this)
     }
   }
 }

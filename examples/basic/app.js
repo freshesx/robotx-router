@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import './rxRouter.js'
+import './router.js'
 import Layout from './components/Layout.vue'
 
 new Vue({

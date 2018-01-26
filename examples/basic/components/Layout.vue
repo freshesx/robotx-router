@@ -8,10 +8,10 @@
     <div class="tasks">
       <div
         class="task"
-        :class="{ 'is-active': $rxCollection.activedTask && $rxCollection.activedTask.id === task.id }"
-        v-for="task in $rxCollection.tasks" :key="task.id"
+        :class="{ 'is-active': $feRoute.active && $feRoute.active.uid === task.uid }"
+        v-for="task in $feRoute.tasks" :key="task.uid"
         @click="activeTask(task, $event)"
-      >{{ task.id }}</div>
+      >{{ task.uid }}</div>
       <div class="task task-plus" @click="addTask">+</div>
     </div>
     <rx-views/>
@@ -19,23 +19,20 @@
 </template>
 
 <script>
-import rxRouter from '../rxRouter.js'
-
 export default {
   methods: {
     addTask () {
-      const task = rxRouter.addTask('homepage')
-      rxRouter.activeTask(task)
+      this.$feRouter.add('homepage')
     },
     pushTask (name) {
-      rxRouter.pushTask(name)
+      this.$feRouter.push(name)
     },
-    activeTask (task, event) {
-      rxRouter.activeTask(task)
+    activeTask (task) {
+      this.$feRouter.activate(task)
     }
   },
   created () {
-    rxRouter.addTask('homepage')
+    this.addTask()
   }
 }
 </script>
