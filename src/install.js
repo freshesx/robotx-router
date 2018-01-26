@@ -1,20 +1,27 @@
 export default function (Vue, options) {
   Vue.mixin({
     beforeCreate () {
-      const router = this.$options.rxRouter
+      if (!this.$options.rxRouter) {
+        throw new Error('The rxRouter is not define.')
+      }
 
-      Vue.util.defineReactive(this, '$rxRecords', router.records)
-      Vue.util.defineReactive(this, '$rxTasks', router.tasks)
-      Vue.util.defineReactive(this, '$rxComponents', router.components)
-    },
-    created () {
-      console.log('created', this)
+      this._rxRouterRoot = this
+      this._rxRouter = this.$options.rxRouter
+      this._rxRouter.bind(this) // bind vm into rxRouter
+
+      Vue.util.defineReactive(this, '_rxCollection', this._rxRouter.collection)
     }
   })
 
   Object.defineProperty(Vue.prototype, '$rxRouter', {
     get () {
-      return this.$options.rxRouter
+      return this._rxRouterRoot._rxRouter
+    }
+  })
+
+  Object.defineProperty(Vue.prototype, '$rxCollection', {
+    get () {
+      return this._rxRouterRoot._rxCollection
     }
   })
 }
