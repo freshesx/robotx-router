@@ -86,7 +86,7 @@ export default class RxRouter {
   /**
    * Manually notify that collection is updated.
    */
-  notify (collection): void {
+  notify (): void {
     // notify vue to update reactive data
     this.vms.forEach(vm => {
       vm._rxCollection = this.collection
