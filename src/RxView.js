@@ -9,5 +9,8 @@ export default {
     return h(
       this.task.record.component.component
     )
+  },
+  install (Vue) {
+    Vue.component(this.name, this)
   }
 }
