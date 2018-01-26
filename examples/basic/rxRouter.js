@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { RxRouter } from '../../dist/main.esm.js'
+import { RxRouter, RxViews, RxView } from '../../dist/main.esm.js'
 
 // 1. Define route components
 const Home = { template: '<div>home</div>' }
@@ -17,5 +17,7 @@ const rxRouter = new RxRouter({
 
 // 3. Use RxRouter
 Vue.use(rxRouter)
+Vue.use(RxViews)
+Vue.use(RxView)
 
 export default rxRouter
