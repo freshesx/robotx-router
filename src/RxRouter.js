@@ -119,9 +119,8 @@ export default class RxRouter {
   }
 
   activeTask (task: Task) {
-    // this.activedTask.push(task)
     this.activedTask = task
-    this.notify && this.notify(task)
+    this.notify()
   }
 
   /**
