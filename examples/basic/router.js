@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { FeRouter, RxViews } from '../../dist/main.esm.js'
+import { FeRouter, FeRouterViews } from '../../dist/main.esm.js'
 import Homepage from './components/Homepage.vue'
 
 // 1. Define route components
@@ -15,6 +15,6 @@ const feRouter = new FeRouter([
 
 // 3. Use feRouter
 Vue.use(feRouter)
-Vue.use(RxViews)
+Vue.use(FeRouterViews)
 
 export default feRouter

@@ -14,7 +14,7 @@
       >{{ task.uid }}</div>
       <div class="task task-plus" @click="addTask">+</div>
     </div>
-    <rx-views/>
+    <fe-router-views/>
   </div>
 </template>
 
