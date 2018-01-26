@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import { RxRouter, RxViews } from '../../dist/main.esm.js'
+import Homepage from './components/Homepage.vue'
 
 // 1. Define route components
-const Home = { template: '<div>home</div>' }
 const Foo = { template: '<div>products</div>' }
 const Bar = { template: '<div>cases</div>' }
 
 // 2. Create the router
 const rxRouter = new RxRouter({
   components: [
-    { name: 'homepage', component: Home },
+    { name: 'homepage', component: Homepage },
     { name: 'products', component: Foo },
     { name: 'cases', component: Bar }
   ]
