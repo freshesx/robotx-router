@@ -1,3 +1,5 @@
+// @flow
+
 export interface PageInterface {
   name: string,
   component: any,
@@ -9,9 +11,9 @@ export interface PageInterface {
 export interface RecordInterface {
   uid: number,
   page: PageInterface,
-  previous: RecordInterface,
-  next: RecordInterface,
-  query: Object
+  previous: ?RecordInterface,
+  next: ?RecordInterface,
+  query: ?Object
   // update(): RecordInterface
 }
 
@@ -22,7 +24,7 @@ export interface TaskInterface {
 
 export interface RouterInterface {
   tasks: Array<TaskInterface>,
-  active: TaskInterface,
+  active?: TaskInterface,
   records: Array<RecordInterface>,
   pages: Array<PageInterface>,
   add(): RecordInterface,
