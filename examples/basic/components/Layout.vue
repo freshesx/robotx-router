@@ -24,7 +24,8 @@ import rxRouter from '../rxRouter.js'
 export default {
   methods: {
     addTask () {
-      rxRouter.addTask('homepage')
+      const task = rxRouter.addTask('homepage')
+      rxRouter.activeTask(task)
     },
     pushTask (name) {
       rxRouter.pushTask(name)
