@@ -1,8 +1,8 @@
-import Router from './core/Router'
+import RxRouter from './RxRouter'
 import install from './install'
 
-Router.install = install
+RxRouter.install = install
 
 export {
-  Router as RxRouter
+  RxRouter
 }
