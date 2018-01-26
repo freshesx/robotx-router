@@ -123,6 +123,11 @@ export default class RxRouter {
     this.notify()
   }
 
+  pushTask (name: string) {
+    this.activedTask.record = this.addRecord(name)
+    this.notify()
+  }
+
   /**
    * Add new record by component config.
    * @protected
