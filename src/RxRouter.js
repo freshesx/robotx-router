@@ -128,6 +128,11 @@ export default class RxRouter {
     this.notify()
   }
 
+  updateTask ({ query }) {
+    this.activedTask.record.query = query
+    this.notify()
+  }
+
   /**
    * Add new record by component config.
    * @protected
