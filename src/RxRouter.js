@@ -110,6 +110,9 @@ export default class RxRouter {
     // If the tasks.length === 1, set current task is active
     if (this.tasks.length === 1) {
       this.activeTask(task)
+    } else {
+      // if false, run notify
+      this.notify()
     }
 
     return task
