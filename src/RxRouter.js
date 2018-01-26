@@ -61,6 +61,7 @@ export default class RxRouter {
       }
     })
 
+    // @todo remove this.$rxRouter
     Object.defineProperty(Vue.prototype, '$rxRouter', {
       get () {
         return rxRouter
