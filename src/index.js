@@ -1,9 +1,9 @@
-import RxRouter from './RxRouter'
+import FeRouter from './FeRouter'
 import RxViews from './RxViews'
 import RxView from './RxView'
 
 export {
-  RxRouter,
+  FeRouter,
   RxViews,
   RxView
 }
