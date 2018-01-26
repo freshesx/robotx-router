@@ -14,13 +14,7 @@
       >{{ task.id }}</div>
       <div class="task task-plus" @click="addTask">+</div>
     </div>
-    <div class="views">
-      <div
-        class="view"
-        :class="{ 'is-active': $rxCollection.activedTask && $rxCollection.activedTask.id === task.id }"
-        v-for="task in $rxCollection.tasks" :key="task.id"
-      >R{{ task.record.id }}</div>
-    </div>
+    <rx-views/>
   </div>
 </template>
 
