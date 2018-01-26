@@ -1,9 +1,9 @@
 import FeRouter from './FeRouter'
-import RxViews from './RxViews'
-import RxView from './RxView'
+import FeRouterViews from './components/FeRouterViews'
+import FeRouterView from './components/FeRouterView'
 
 export {
   FeRouter,
-  RxViews,
-  RxView
+  FeRouterViews,
+  FeRouterView
 }

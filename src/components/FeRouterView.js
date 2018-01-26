@@ -1,5 +1,5 @@
 export default {
-  name: 'RxView',
+  name: 'FeRouterView',
   props: {
     task: {
       type: Object
@@ -7,7 +7,7 @@ export default {
   },
   render (h) {
     if (!this.task) return
-    
+
     return h(
       this.task.record.page.component
     )
