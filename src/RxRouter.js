@@ -51,18 +51,41 @@ export default class RxRouter {
     }
   }
 
+  install (Vue) {
+    const rxRouter = this
+
+    Vue.mixin({
+      beforeCreate () {
+        rxRouter.bind(this)
+        Vue.util.defineReactive(this, '_rxCollection', rxRouter.collection)
+      }
+    })
+
+    Object.defineProperty(Vue.prototype, '$rxRouter', {
+      get () {
+        return rxRouter
+      }
+    })
+
+    Object.defineProperty(Vue.prototype, '$rxCollection', {
+      get () {
+        return this._rxCollection
+      }
+    })
+  }
+
   /**
    * Manually set self to bind vue component instance
-   * @param {*} vm 
+   * @param {vueComponent} vm
    */
-  bind (vm: any) {
+  bind (vm: any): void {
     this.vms.push(vm)
   }
 
   /**
    * Manually notify that collection is updated.
    */
-  notify (collection):void {
+  notify (collection): void {
     // notify vue to update reactive data
     this.vms.forEach(vm => {
       vm._rxCollection = this.collection
