@@ -38,6 +38,9 @@ export default {
     activeTask (task, event) {
       rxRouter.activeTask(task)
     }
+  },
+  created () {
+    rxRouter.addTask('homepage')
   }
 }
 </script>
