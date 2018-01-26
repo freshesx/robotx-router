@@ -1,28 +1,25 @@
 import Vue from 'vue'
 import { RxRouter } from '../../dist/main.esm.js'
 
-// 1. Use RxRouter
-Vue.use(RxRouter)
-
-// 2. Define route components
+// 1. Define route components
 const Home = { template: '<div>home</div>' }
 const Foo = { template: '<div>products</div>' }
 const Bar = { template: '<div>cases</div>' }
 
-// 3. Create the router
+// 2. Create the router
 const rxRouter = new RxRouter({
-  routes: [
+  components: [
     { name: 'homepage', component: Home },
     { name: 'products', component: Foo },
     { name: 'cases', component: Bar }
   ]
 })
 
+// 3. Use RxRouter
+Vue.use(rxRouter)
+
 // 4. Create and mount root instance.
-// Make sure to inject the router.
-// Route components will be rendered inside <router-view>.
 new Vue({
-  rxRouter,
   template: `
     <div id="app">
       <div class="navbar">
@@ -33,16 +30,19 @@ new Vue({
       <div class="tasks">
         <div
           class="task"
-          v-for="task in $rxTasks" :key="task.id"
+          :class="{ 'is-active': $rxCollection.activedTask && $rxCollection.activedTask.id === task.id }"
+          v-for="task in $rxCollection.tasks" :key="task.id"
         >{{ task.id }}</div>
         <div class="task task-plus" @click="addTask">+</div>
       </div>
       <div class="views">
         <div
           class="view"
-          v-for="task in $rxTasks" :key="task.id"
-        >{{ task.id }}</div>
+          :class="{ 'is-active': $rxCollection.activedTask && $rxCollection.activedTask.id === task.id }"
+          v-for="task in $rxCollection.tasks" :key="task.id"
+        >R{{ task.record.id }}</div>
       </div>
+      <!--
       <div v-for="(collection, name) in collections">
         <h1>{{ name }}</h1>
         <ul>
@@ -51,23 +51,15 @@ new Vue({
           </li>
         </ul>
       </div>
+      -->
     </div>
   `,
-  computed: {
-    collections () {
-      return {
-        components: this.$rxComponents,
-        records: this.$rxRecords,
-        tasks: this.$rxTasks
-      }
-    }
-  },
   methods: {
     addTask () {
-      this.$rxRouter.addTask('homepage')
+      rxRouter.addTask('homepage')
     },
     pushTask (name) {
-      this.$rxRouter.pushTask(name)
+      rxRouter.pushTask(name)
     },
     removeTask () {
 
@@ -81,8 +73,5 @@ new Vue({
     nextRecord () {
 
     }
-  },
-  mounted () {
-    this.$rxRouter.addTask('products')
   }
 }).$mount('#app')

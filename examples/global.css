@@ -31,9 +31,21 @@ a:hover {
   padding: 8px;
 }
 
+.task.is-active {
+  background: #ddd;
+}
+
 .task-plus {
   width: 20px;
   flex: none;
   text-align: center;
   cursor: pointer;
+}
+
+.view {
+  display: none;
+}
+
+.view.is-active {
+  display: block;
 }
