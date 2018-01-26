@@ -1,3 +1,5 @@
+import RxView from './RxView'
+
 interface ComponentConfig {
   name: string,
   component?: Object,
@@ -73,6 +75,8 @@ export default class RxRouter {
         return this._rxCollection
       }
     })
+
+    Vue.component('RxView', RxView)
   }
 
   /**
