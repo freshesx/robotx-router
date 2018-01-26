@@ -1,4 +1,4 @@
-export interface RouteInterface {
+export interface PageInterface {
   name: string,
   component: any,
   meta: {
@@ -8,32 +8,36 @@ export interface RouteInterface {
 
 export interface RecordInterface {
   uid: number,
-  route: RouteInterface,
-  previous: RouteInterface,
-  next: RouteInterface,
-  query: Object,
-  update(): RecordInterface
+  page: PageInterface,
+  previous: RecordInterface,
+  next: RecordInterface,
+  query: Object
+  // update(): RecordInterface
 }
 
 export interface TaskInterface {
   uid: number,
-  record: RouteInterface
+  record: RecordInterface
 }
 
 export interface RouterInterface {
   tasks: Array<TaskInterface>,
   active: TaskInterface,
   records: Array<RecordInterface>,
-+ routes: Array<RouteInterface>,
+  pages: Array<PageInterface>,
+  add(): RecordInterface,
+  activate(): RouterInterface,
+  stringify(): string,
+  parse(): void
+}
+
+export interface FeRouterInterface {
+  vms: Array<any>, // vueComponent instance
 + store: {
     tasks: Array<TaskInterface>,
     active: TaskInterface
   },
-  add(): RecordInterface,
-  activate(): RouterInterface,
   notify(): RouterInterface,
   bind(): RouterInterface,
-  install(): RouterInterface,
-  stringify(): string,
-  parse(): void
+  install(): RouterInterface
 }
