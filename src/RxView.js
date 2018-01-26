@@ -6,8 +6,10 @@ export default {
     }
   },
   render (h) {
+    if (!this.task) return
+    
     return h(
-      this.task.record.component.component
+      this.task.record.page.component
     )
   },
   install (Vue) {

@@ -3,9 +3,9 @@ import RxView from './RxView'
 export default {
   name: 'RxViews',
   render (h) {
-    const children = this.$rxCollection.tasks.map(task => {
-      const isActive = this.$rxCollection.activedTask &&
-        this.$rxCollection.activedTask.id === task.id
+    const children = this.$feRoute.tasks.map(task => {
+      const isActive = this.$feRoute.active &&
+        this.$feRoute.active.uid === task.uid
 
       return h(
         RxView,
