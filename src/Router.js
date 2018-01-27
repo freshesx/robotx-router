@@ -47,7 +47,9 @@ export default class Router implements RouterInterface {
   push (name: string): RouterInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
       const page: PageInterface = this.findPageOrFail(name)
-      const next: RecordInterface = this.active.record.addNext(page)
+      const next: RecordInterface = new Record(page, {
+        previous: this.active.record
+      })
 
       this.records.push(next)
       this.active.record = next
