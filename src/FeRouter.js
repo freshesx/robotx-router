@@ -56,7 +56,11 @@ export default class FeRouter extends Router {
     this.vms.forEach(vm => {
       vm._feRoute = this.route
     })
-    // @todo notify session storage to save data
+    // Save to session storage
+    if (window.sessionStorage) {
+      const str = JSON.stringify(this.serialize())
+      window.sessionStorage.setItem('FE_ROUTER', str)
+    }
     return this
   }
 }
