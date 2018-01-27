@@ -43,6 +43,12 @@ export default class Router implements RouterInterface {
     return task
   }
 
+  default (name: string): ?TaskInterface {
+    if (this.tasks.length <= 0) {
+      return this.add(name)
+    }
+  }
+
   activate (task: TaskInterface): RouterInterface {
     this.active = task
     this.notify()
