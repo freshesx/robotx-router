@@ -15,7 +15,7 @@ export interface RecordInterface {
   next: ?RecordInterface,
   query: ?Object,
   addNext(page: PageInterface): RecordInterface,
-  update(options: { query?: Object }): void
+  update(options: { query?: Object }): void // @todo: update options interface
 }
 
 export interface TaskInterface {
@@ -25,13 +25,14 @@ export interface TaskInterface {
 
 export interface RouterInterface {
   tasks: Array<TaskInterface>,
-  active?: TaskInterface,
+  active: ?TaskInterface,
   records: Array<RecordInterface>,
   pages: Array<PageInterface>,
-  add(): RecordInterface,
-  activate(): RouterInterface,
-  stringify(): string,
-  parse(): void
+  add(name: string): TaskInterface,
+  push(name: string): RouterInterface,
+  activate(task: TaskInterface): RouterInterface,
+  stringify(): ?string,
+  parse(): RouterInterface
 }
 
 export interface FeRouterInterface {

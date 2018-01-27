@@ -1,8 +1,15 @@
+// @flow
+
 import { PageInterface, TaskInterface, RecordInterface, RouterInterface } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 
 export default class Router implements RouterInterface {
+  pages: Array<PageInterface>
+  records: Array<RecordInterface>
+  tasks: Array<TaskInterface>
+  active: ?TaskInterface
+
   constructor (pages: Array<PageInterface>) {
     this.pages = pages || []
     this.records = []
@@ -36,16 +43,30 @@ export default class Router implements RouterInterface {
     return this
   }
 
-  push (name: string) {
-    const page: PageInterface = this.findPageOrFail(name)
-    this.active.record = this.active.record.addNext(page)
-    this.notify()
+  push (name: string): RouterInterface {
+    if (this.active instanceof Task && this.active.record instanceof Record) {
+      const page: PageInterface = this.findPageOrFail(name)
+      const next: RecordInterface = this.active.record.addNext(page)
+
+      this.active.record = next
+      this.notify()
+    }
     return this
   }
 
   update (options: Object) {
-    this.active.record.update(options)
-    this.notify()
+    if (this.active instanceof Task && this.active.record instanceof Record) {
+      this.active.record.update(options)
+      this.notify()
+    }
+    return this
+  }
+
+  stringify (): ?string {
+
+  }
+
+  parse (): RouterInterface {
     return this
   }
 
