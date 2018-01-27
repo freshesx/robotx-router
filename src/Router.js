@@ -129,7 +129,7 @@ export default class Router implements RouterInterface {
     this.tasks.push(task)
   }
 
-  findCollectionMaxUid (collection: Array<{ uid: number }>): number {
+  findCollectionMaxUid (collection: Array<TaskInterface|RecordInterface>): number {
     let uid: number = 0
     collection.forEach((item: { uid: number }) => {
       if (item.uid > uid) uid = item.uid
