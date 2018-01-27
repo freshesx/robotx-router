@@ -31,7 +31,7 @@ export interface RouterInterface {
   add(name: string): TaskInterface,
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,
-  stringify(): ?string,
+  serialize(): Object,
   parse(): RouterInterface
 }
 

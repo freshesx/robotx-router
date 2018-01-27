@@ -62,8 +62,15 @@ export default class Router implements RouterInterface {
     return this
   }
 
-  stringify (): ?string {
-
+  serialize (): Object {
+    const obj: {
+      tasks: Array<mixed>,
+      record: Array<mixed>
+    } = {
+      tasks: this.tasks.map(task => task.stringify()),
+      record: this.records.map(record => record.stringify())
+    }
+    return obj
   }
 
   parse (): RouterInterface {
