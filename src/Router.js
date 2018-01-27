@@ -9,6 +9,7 @@ export default class Router implements RouterInterface {
   records: Array<RecordInterface>
   tasks: Array<TaskInterface>
   active: ?TaskInterface
+  recordMaxUid: number
 
   constructor (pages: Array<PageInterface>) {
     this.pages = pages || []
