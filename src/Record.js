@@ -29,4 +29,23 @@ export default class Record implements RecordInterface {
   update (options: { query?: Object } = {}) {
     this.query = options.query
   }
+
+  serialize (): Object {
+    const obj: {
+      uid: number,
+      pageName: string,
+      query?: Object,
+      previousId?: number,
+      nextId?: number
+    } = {
+      uid: this.uid,
+      pageName: this.page.name
+    }
+
+    if (this.query) obj.query = this.query
+    if (this.previous instanceof Record) obj.previousId = this.previous.uid
+    if (this.next instanceof Record) obj.nextId = this.next.uid
+
+    return obj
+  }
 }

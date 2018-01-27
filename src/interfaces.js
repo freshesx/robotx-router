@@ -15,7 +15,8 @@ export interface RecordInterface {
   next: ?RecordInterface,
   query: ?Object,
   addNext(page: PageInterface): RecordInterface,
-  update(options: { query?: Object }): void // @todo: update options interface
+  update(options: { query?: Object }): void, // @todo: update options interface
+  serialize(): Object
 }
 
 export interface TaskInterface {
