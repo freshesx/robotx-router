@@ -13,8 +13,9 @@ export interface RecordInterface {
   page: PageInterface,
   previous: ?RecordInterface,
   next: ?RecordInterface,
-  query: ?Object
-  // update(): RecordInterface
+  query: ?Object,
+  addNext(page: PageInterface): RecordInterface,
+  update(options: { query?: Object }): void
 }
 
 export interface TaskInterface {
