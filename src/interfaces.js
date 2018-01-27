@@ -30,6 +30,7 @@ export interface RouterInterface {
   records: Array<RecordInterface>,
   pages: Array<PageInterface>,
   recordMaxUid: number,
+  taskMaxUid: number,
   add(name: string): TaskInterface,
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,

@@ -19,6 +19,7 @@ export default class Router implements RouterInterface {
 
     // private
     this.recordMaxUid = 0
+    this.taskMaxUid = 0
   }
 
   notify () {
@@ -32,7 +33,7 @@ export default class Router implements RouterInterface {
   add (name: string): TaskInterface {
     const page: PageInterface = this.findPageOrFail(name)
     const record: RecordInterface = new Record(this.recordMaxUid++, page)
-    const task: TaskInterface = new Task(record)
+    const task: TaskInterface = new Task(this.taskMaxUid++, record)
 
     this.records.push(record)
     this.tasks.push(task)
