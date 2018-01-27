@@ -15,8 +15,8 @@ export default class Record implements RecordInterface {
   previous: ?RecordInterface
   next: ?RecordInterface
 
-  constructor (page: PageInterface, options: CtorOptions = {}) {
-    this.uid = uid++
+  constructor (uid: number, page: PageInterface, options: CtorOptions = {}) {
+    this.uid = uid
     this.page = page
     this.query = {}
     this.previous = undefined

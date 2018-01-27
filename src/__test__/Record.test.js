@@ -13,7 +13,7 @@ describe('Record', () => {
   })
 
   it('create a record', () => {
-    const record = new Record(page)
+    const record = new Record(0, page)
     expect(record).toEqual({
       uid: 0,
       page,
@@ -24,12 +24,12 @@ describe('Record', () => {
   })
 
   it('add next record', () => {
-    const record = new Record(page)
-    const next = new Record(page, {
+    const record = new Record(0, page)
+    const next = new Record(1, page, {
       previous: record
     })
     expect(next).toEqual({
-      uid: 2,
+      uid: 1,
       page,
       previous: record,
       next: undefined,
