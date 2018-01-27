@@ -2,8 +2,6 @@
 
 import { PageInterface, RecordInterface } from './interfaces'
 
-let uid = 0
-
 interface CtorOptions {
   previous?: RecordInterface
 }
