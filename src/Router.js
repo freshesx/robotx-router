@@ -31,7 +31,7 @@ export default class Router implements RouterInterface {
    * @return {Task}
    */
   add (name: string): TaskInterface {
-    const page: PageInterface = this.findPageOrFail(name)
+    const page: PageInterface = this.findPage(name)
     const record: RecordInterface = new Record(this.recordMaxUid++, page)
     const task: TaskInterface = new Task(this.taskMaxUid++, record)
 
@@ -51,7 +51,7 @@ export default class Router implements RouterInterface {
 
   push (name: string): RouterInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
-      const page: PageInterface = this.findPageOrFail(name)
+      const page: PageInterface = this.findPage(name)
       const next: RecordInterface = new Record(this.recordMaxUid++, page, {
         previous: this.active.record
       })
@@ -92,17 +92,9 @@ export default class Router implements RouterInterface {
    * @param {string} name  name of component config item
    * @return {ComponentConfig}
    */
-  findPage (name: string): ?PageInterface {
-    return this.pages.find(item => item.name === name)
-  }
-
-  findPageOrFail (name: string): PageInterface {
-    const page = this.findPage(name)
-
-    if (!page) {
-      throw new Error(`Cannot find the page that named ${name}`)
-    }
-
+  findPage (name: string): PageInterface {
+    const page = this.pages.find(item => item.name === name)
+    if (!page) throw new Error(`Cannot find the page named ${name}`)
     return page
   }
 }
