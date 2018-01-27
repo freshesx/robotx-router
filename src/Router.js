@@ -1,6 +1,6 @@
 // @flow
 
-import { PageInterface, TaskInterface, RecordInterface, RouterInterface } from './interfaces'
+import { PageInterface, TaskInterface, RecordInterface, RouterInterface, parsedData, RecordData, TaskData } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 
@@ -10,6 +10,7 @@ export default class Router implements RouterInterface {
   tasks: Array<TaskInterface>
   active: ?TaskInterface
   recordMaxUid: number
+  taskMaxUid: number
 
   constructor (pages: Array<PageInterface>) {
     this.pages = pages || []
@@ -90,7 +91,7 @@ export default class Router implements RouterInterface {
     return obj
   }
 
-  parse (data): RouterInterface {
+  parse (data: parsedData): RouterInterface {
     const { records, tasks } = data
 
     for (let index = 0; index < records.length; index++) {
@@ -107,9 +108,10 @@ export default class Router implements RouterInterface {
     // set active task
     this.active = this.findTask(data.activeUid)
     this.notify()
+    return this
   }
 
-  parseRecord (config) {
+  parseRecord (config: RecordData) {
     const page = this.findPage(config.pageName)
     const options = {}
 
@@ -121,15 +123,15 @@ export default class Router implements RouterInterface {
     this.records.push(record)
   }
 
-  parseTask (config) {
+  parseTask (config: TaskData) {
     const record = this.findRecord(config.recordId)
     const task = new Task(config.uid, record)
     this.tasks.push(task)
   }
 
-  findCollectionMaxUid (collection: { uid: number }): number {
+  findCollectionMaxUid (collection: Array<{ uid: number }>): number {
     let uid: number = 0
-    collection.forEach(item => {
+    collection.forEach((item: { uid: number }) => {
       if (item.uid > uid) uid = item.uid
     })
     return uid

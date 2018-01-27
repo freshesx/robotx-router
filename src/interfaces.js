@@ -18,10 +18,29 @@ export interface RecordInterface {
   serialize(): Object
 }
 
+export interface RecordData {
+  uid: number,
+  pageName: string,
+  previousId?: number,
+  nextId?: number,
+  query?: Object
+}
+
 export interface TaskInterface {
   uid: number,
   record: RecordInterface,
   serialize(): Object
+}
+
+export interface TaskData {
+  uid: number,
+  recordId: number
+}
+
+export interface parsedData {
+  tasks: Array<TaskData>,
+  records: Array<RecordData>,
+  activeUid: number
 }
 
 export interface RouterInterface {
@@ -35,7 +54,7 @@ export interface RouterInterface {
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,
   serialize(): Object,
-  parse(): RouterInterface
+  parse(data: parsedData): RouterInterface
 }
 
 export interface FeRouterInterface {
