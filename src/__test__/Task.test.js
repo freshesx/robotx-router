@@ -16,7 +16,7 @@ describe('Task', () => {
   })
 
   it('returns a created task', () => {
-    const task = new Task(record)
+    const task = new Task(0, record)
     expect(task).toEqual({
       uid: 0,
       record
