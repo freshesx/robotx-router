@@ -15,6 +15,9 @@ export default class Router implements RouterInterface {
     this.records = []
     this.tasks = []
     this.active = undefined
+
+    // private
+    this.recordMaxUid = 0
   }
 
   notify () {
@@ -27,7 +30,7 @@ export default class Router implements RouterInterface {
    */
   add (name: string): TaskInterface {
     const page: PageInterface = this.findPageOrFail(name)
-    const record: RecordInterface = new Record(page)
+    const record: RecordInterface = new Record(this.recordMaxUid++, page)
     const task: TaskInterface = new Task(record)
 
     this.records.push(record)
@@ -47,7 +50,7 @@ export default class Router implements RouterInterface {
   push (name: string): RouterInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
       const page: PageInterface = this.findPageOrFail(name)
-      const next: RecordInterface = new Record(page, {
+      const next: RecordInterface = new Record(this.recordMaxUid++, page, {
         previous: this.active.record
       })
 
