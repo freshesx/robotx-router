@@ -84,8 +84,42 @@ export default class Router implements RouterInterface {
     return obj
   }
 
-  parse (): RouterInterface {
-    return this
+  parse (data): RouterInterface {
+    const { records, tasks } = data
+
+    for (let index = 0; index < records.length; index++) {
+      this.parseRecord(records[index])
+    }
+
+    for (let index = 0; index < tasks.length; index++) {
+      this.parseTask(tasks[index])
+    }
+
+    this.recordMaxUid = this.findCollectionMaxUid(this.records) + 1
+    this.taskMaxUid = this.findCollectionMaxUid(this.tasks) + 1
+
+    // set active task
+    this.active = this.findTask(data.activeUid)
+    this.notify()
+  }
+
+  parseRecord (config) {
+    const page = this.findPage(config.pageName)
+    const options = {}
+
+    if (typeof config.previousId === 'number') {
+      options.previous = this.findRecord(config.previousId)
+    }
+
+    const record = new Record(config.uid, page, options)
+    this.records.push(record)
+  }
+
+  parseTask (config) {
+    const record = this.findRecord(config.recordId)
+    const task = new Task(config.uid, record)
+    this.tasks.push(task)
+  }
 
   findCollectionMaxUid (collection: { uid: number }): number {
     let uid: number = 0
