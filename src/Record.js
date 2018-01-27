@@ -30,7 +30,9 @@ export default class Record implements RecordInterface {
   }
 
   update (options: { query?: Object } = {}) {
-    this.query = options.query
+    if (options.query) {
+      this.query = options.query
+    }
   }
 
   serialize (): Object {
