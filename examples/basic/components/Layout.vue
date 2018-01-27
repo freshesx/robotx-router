@@ -4,6 +4,7 @@
       <button @click="pushTask('homepage')">Homepage</button>
       <button @click="pushTask('products')">products</button>
       <button @click="pushTask('cases')">cases</button>
+      <button @click="serialize">serialize</button>
     </div>
     <div class="tasks">
       <div
@@ -29,6 +30,9 @@ export default {
     },
     activeTask (task) {
       this.$feRouter.activate(task)
+    },
+    serialize () {
+      console.log(this.$feRouter.serialize())
     }
   },
   created () {
