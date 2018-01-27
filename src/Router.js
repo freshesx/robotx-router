@@ -74,10 +74,12 @@ export default class Router implements RouterInterface {
   serialize (): Object {
     const obj: {
       tasks: Array<mixed>,
-      record: Array<mixed>
+      records: Array<mixed>,
+      activeUid: number
     } = {
       tasks: this.tasks.map(task => task.serialize()),
-      record: this.records.map(record => record.serialize())
+      records: this.records.map(record => record.serialize()),
+      activeUid: this.active.uid
     }
     return obj
   }
