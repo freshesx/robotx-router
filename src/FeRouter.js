@@ -4,6 +4,7 @@ export default class FeRouter extends Router {
   constructor (...args) {
     super(...args)
     this.vms = []
+    this.initStorage()
   }
 
   get route () {
@@ -62,5 +63,19 @@ export default class FeRouter extends Router {
       window.sessionStorage.setItem('FE_ROUTER', str)
     }
     return this
+  }
+
+  initStorage () {
+    if (!window.sessionStorage) return
+
+    const str = window.sessionStorage.getItem('FE_ROUTER')
+
+    if (!str) return
+
+    try {
+      this.parse(JSON.parse(str))
+    } catch (err) {
+      console.log('Cannot parse sessionStorage item.')
+    }
   }
 }
