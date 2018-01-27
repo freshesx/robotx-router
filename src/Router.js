@@ -30,6 +30,7 @@ export default class Router implements RouterInterface {
     const record: RecordInterface = new Record(page)
     const task: TaskInterface = new Task(record)
 
+    this.records.push(record)
     this.tasks.push(task)
     this.active = task
     this.notify()
@@ -48,6 +49,7 @@ export default class Router implements RouterInterface {
       const page: PageInterface = this.findPageOrFail(name)
       const next: RecordInterface = this.active.record.addNext(page)
 
+      this.records.push(next)
       this.active.record = next
       this.notify()
     }
