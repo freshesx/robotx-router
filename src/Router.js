@@ -69,8 +69,8 @@ export default class Router implements RouterInterface {
       tasks: Array<mixed>,
       record: Array<mixed>
     } = {
-      tasks: this.tasks.map(task => task.stringify()),
-      record: this.records.map(record => record.stringify())
+      tasks: this.tasks.map(task => task.serialize()),
+      record: this.records.map(record => record.serialize())
     }
     return obj
   }
