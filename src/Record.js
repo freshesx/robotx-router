@@ -4,6 +4,10 @@ import { PageInterface, RecordInterface } from './interfaces'
 
 let uid = 0
 
+interface CtorOptions {
+  previous?: RecordInterface
+}
+
 export default class Record implements RecordInterface {
   uid: number
   page: PageInterface
@@ -11,19 +15,18 @@ export default class Record implements RecordInterface {
   previous: ?RecordInterface
   next: ?RecordInterface
 
-  constructor (page: PageInterface) {
+  constructor (page: PageInterface, options: CtorOptions = {}) {
     this.uid = uid++
     this.page = page
     this.query = {}
     this.previous = undefined
     this.next = undefined
-  }
 
-  addNext (page: PageInterface): RecordInterface {
-    const next: RecordInterface = new Record(page)
-    this.next = next
-    next.previous = this
-    return next
+    // If the previous is exist
+    if (options.previous instanceof Record) {
+      this.previous = options.previous
+      options.previous.next = this
+    }
   }
 
   update (options: { query?: Object } = {}) {
