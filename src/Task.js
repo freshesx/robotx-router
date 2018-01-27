@@ -12,4 +12,11 @@ export default class Task implements TaskInterface {
     this.uid = uid++
     this.record = record
   }
+
+  serialize () {
+    return {
+      uid: this.uid,
+      recordId: this.record.uid
+    }
+  }
 }

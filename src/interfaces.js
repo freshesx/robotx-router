@@ -21,7 +21,8 @@ export interface RecordInterface {
 
 export interface TaskInterface {
   uid: number,
-  record: RecordInterface
+  record: RecordInterface,
+  serialize(): Object
 }
 
 export interface RouterInterface {
