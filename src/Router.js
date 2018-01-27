@@ -86,6 +86,25 @@ export default class Router implements RouterInterface {
 
   parse (): RouterInterface {
     return this
+
+  findCollectionMaxUid (collection: { uid: number }): number {
+    let uid: number = 0
+    collection.forEach(item => {
+      if (item.uid > uid) uid = item.uid
+    })
+    return uid
+  }
+
+  findRecord (uid: number): RecordInterface {
+    const record: RecordInterface = this.records.find(record => record.uid === uid)
+    if (!record) throw new Error(`Cannot find the record named ${uid}`)
+    return record
+  }
+
+  findTask (uid: number): TaskInterface {
+    const task: TaskInterface = this.tasks.find(task => task.uid === uid)
+    if (!task) throw new Error(`Cannot find the task named ${uid}`)
+    return task
   }
 
   /**
