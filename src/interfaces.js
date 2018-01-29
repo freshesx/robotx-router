@@ -1,5 +1,9 @@
 // @flow
 
+export interface QueryInterface {
+  [key: string]: string | number | boolean | void | null | QueryInterface
+}
+
 export interface PageInterface {
   name: string,
   component: any,
