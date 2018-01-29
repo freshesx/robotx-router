@@ -1,9 +1,9 @@
 import FeRouter from './FeRouter'
-import FeRouterViews from './components/FeRouterViews'
-import FeRouterView from './components/FeRouterView'
+import StoryboardViews from './components/StoryboardViews'
+import StoryboardView from './components/StoryboardView'
 
 export {
   FeRouter,
-  FeRouterViews,
-  FeRouterView
+  StoryboardViews,
+  StoryboardView
 }

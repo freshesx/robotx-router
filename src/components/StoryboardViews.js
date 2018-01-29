@@ -1,7 +1,7 @@
-import FeRouterView from './FeRouterView'
+import FeRouterView from './StoryboardView'
 
 export default {
-  name: 'FeRouterViews',
+  name: 'StoryboardViews',
   render (h) {
     const children = this.$storyboard.tasks.map(task => {
       const isActive = this.$storyboard.active &&

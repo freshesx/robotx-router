@@ -1,5 +1,5 @@
 export default {
-  name: 'FeRouterView',
+  name: 'StoryboardView',
   props: {
     task: {
       type: Object
