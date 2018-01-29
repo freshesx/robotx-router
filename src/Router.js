@@ -79,15 +79,15 @@ export default class Router implements RouterInterface {
     return this
   }
 
-  serialize (): Object {
-    const obj: StorageData = {
+  serialize (): StorageData {
+    const activeUid: number | void = this.active ? this.active.uid : undefined
+    return {
       tasks: this.tasks.map(task => task.serialize()),
       records: this.records.map(record => record.serialize()),
-      activeUid: this.active ? this.active.uid : undefined,
+      activeUid: activeUid,
       recordMaxUid: this.recordMaxUid,
       taskMaxUid: this.taskMaxUid
     }
-    return obj
   }
 
   parse (data: StorageData): RouterInterface {
