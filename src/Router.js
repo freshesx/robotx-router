@@ -1,6 +1,6 @@
 // @flow
 
-import { PageInterface, TaskInterface, RecordInterface, RouterInterface, parsedData, RecordData, TaskData } from './interfaces'
+import { PageInterface, TaskInterface, RecordInterface, RouterInterface, storageData, RecordData, TaskData } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 
@@ -80,7 +80,7 @@ export default class Router implements RouterInterface {
   }
 
   serialize (): Object {
-    const obj: parsedData = {
+    const obj: storageData = {
       tasks: this.tasks.map(task => task.serialize()),
       records: this.records.map(record => record.serialize()),
       activeUid: this.active ? this.active.uid : undefined,
@@ -90,7 +90,7 @@ export default class Router implements RouterInterface {
     return obj
   }
 
-  parse (data: parsedData): RouterInterface {
+  parse (data: storageData): RouterInterface {
     const { records, tasks } = data
 
     for (let index = 0; index < records.length; index++) {
