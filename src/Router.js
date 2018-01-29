@@ -1,10 +1,10 @@
 // @flow
 
-import { PageInterface, TaskInterface, RecordInterface, RouterInterface, StorageData, RecordData, TaskData } from './interfaces'
+import { PageInterface, TaskInterface, RecordInterface, StoryboardInterface, StorageData, RecordData, TaskData } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 
-export default class Router implements RouterInterface {
+export default class Storyboard implements StoryboardInterface {
   pages: Array<PageInterface>
   records: Array<RecordInterface>
   tasks: Array<TaskInterface>
@@ -50,13 +50,13 @@ export default class Router implements RouterInterface {
     }
   }
 
-  activate (task: TaskInterface): RouterInterface {
+  activate (task: TaskInterface): StoryboardInterface {
     this.active = task
     this.notify()
     return this
   }
 
-  push (name: string): RouterInterface {
+  push (name: string): StoryboardInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
       const previous: RecordInterface = this.active.record
       const page: PageInterface = this.findPage(name)
@@ -90,7 +90,7 @@ export default class Router implements RouterInterface {
     }
   }
 
-  parse (data: StorageData): RouterInterface {
+  parse (data: StorageData): StoryboardInterface {
     const { records, tasks } = data
 
     for (let index = 0; index < records.length; index++) {

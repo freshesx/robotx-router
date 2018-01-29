@@ -49,7 +49,7 @@ export interface StorageData {
   taskMaxUid: number
 }
 
-export interface RouterInterface {
+export interface StoryboardInterface {
   tasks: Array<TaskInterface>,
   active: TaskInterface | void,
   records: Array<RecordInterface>,
@@ -58,16 +58,16 @@ export interface RouterInterface {
   taskMaxUid: number,
   notify(): void,
   add(name: string): TaskInterface,
-  push(name: string): RouterInterface,
-  activate(task: TaskInterface): RouterInterface,
+  push(name: string): StoryboardInterface,
+  activate(task: TaskInterface): StoryboardInterface,
   serialize(): StorageData,
-  parse(data: StorageData): RouterInterface
+  parse(data: StorageData): StoryboardInterface
 }
 
 export interface FeRouterInterface {
   vueReactiveName: string,
   vms: Array<any>, // vueComponent instance
-  notify(): RouterInterface,
-  bind(): RouterInterface,
-  install(): RouterInterface
+  notify(): StoryboardInterface,
+  bind(): StoryboardInterface,
+  install(): StoryboardInterface
 }

@@ -1,6 +1,6 @@
-import Router from './Router'
+import Storyboard from './Storyboard'
 
-export default class FeRouter extends Router {
+export default class FeRouter extends Storyboard {
   constructor (...args) {
     super(...args)
     this.vueReactiveName = 'storyboard'
@@ -9,22 +9,22 @@ export default class FeRouter extends Router {
   }
 
   install (Vue) {
-    const router = this
+    const storyboard = this
 
     Vue.mixin({
       beforeCreate () {
-        router.bind(this)
-        Vue.util.defineReactive(this, `_${this.vueReactiveName}`, router)
+        storyboard.bind(this)
+        Vue.util.defineReactive(this, `_${this.vueReactiveName}`, storyboard)
       }
     })
 
     Object.defineProperty(Vue.prototype, `$${this.vueReactiveName}`, {
       get () {
-        return router
+        return storyboard
       }
     })
 
-    return router
+    return storyboard
   }
 
   /**
