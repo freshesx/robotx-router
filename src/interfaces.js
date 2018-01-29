@@ -47,7 +47,7 @@ export interface parsedData {
 
 export interface RouterInterface {
   tasks: Array<TaskInterface>,
-  active: ?TaskInterface,
+  active: TaskInterface | void,
   records: Array<RecordInterface>,
   pages: Array<PageInterface>,
   recordMaxUid: number,

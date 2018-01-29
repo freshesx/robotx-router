@@ -8,7 +8,7 @@ export default class Router implements RouterInterface {
   pages: Array<PageInterface>
   records: Array<RecordInterface>
   tasks: Array<TaskInterface>
-  active: ?TaskInterface
+  active: TaskInterface | void
   recordMaxUid: number
   taskMaxUid: number
 
