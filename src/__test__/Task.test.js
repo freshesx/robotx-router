@@ -1,18 +1,18 @@
 import Task from '../Task.js'
 import Record from '../Record.js'
 
-let page
+let board
 let record
 
 describe('Task', () => {
   beforeEach(() => {
-    page = {
+    board = {
       name: 'homepage',
       component: {
         template: 'Hi'
       }
     }
-    record = new Record(0, page)
+    record = new Record(0, board)
   })
 
   it('returns a created task', () => {

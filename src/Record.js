@@ -1,6 +1,6 @@
 // @flow
 
-import type { PageInterface, RecordInterface, QueryInterface } from './interfaces'
+import type { BoardInterface, RecordInterface, QueryInterface } from './interfaces'
 
 interface CtorOptions {
   previous?: RecordInterface
@@ -8,14 +8,14 @@ interface CtorOptions {
 
 export default class Record implements RecordInterface {
   uid: number
-  page: PageInterface
+  board: BoardInterface
   query: QueryInterface | void
   previous: RecordInterface | void
   next: RecordInterface | void
 
-  constructor (uid: number, page: PageInterface, options: CtorOptions = {}) {
+  constructor (uid: number, board: BoardInterface, options: CtorOptions = {}) {
     this.uid = uid
-    this.page = page
+    this.board = board
     this.query = undefined
     this.previous = undefined
     this.next = undefined
@@ -36,13 +36,13 @@ export default class Record implements RecordInterface {
   serialize (): Object {
     const obj: {
       uid: number,
-      pageName: string,
+      boardName: string,
       query?: Object,
       previousId?: number,
       nextId?: number
     } = {
       uid: this.uid,
-      pageName: this.page.name
+      boardName: this.board.name
     }
 
     if (this.query) obj.query = this.query

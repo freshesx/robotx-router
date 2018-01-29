@@ -9,7 +9,7 @@ export default {
     if (!this.task) return
 
     return h(
-      this.task.record.page.component
+      this.task.record.board.component
     )
   },
   install (Vue) {

@@ -1,19 +1,19 @@
 // @flow
 
-import type { PageInterface, TaskInterface, RecordInterface, StoryboardInterface, StorageData, RecordData, TaskData } from './interfaces'
+import type { BoardInterface, TaskInterface, RecordInterface, StoryboardInterface, StorageData, RecordData, TaskData } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 
 export default class Storyboard implements StoryboardInterface {
-  pages: Array<PageInterface>
+  boards: Array<BoardInterface>
   records: Array<RecordInterface>
   tasks: Array<TaskInterface>
   active: TaskInterface | void
   recordMaxUid: number
   taskMaxUid: number
 
-  constructor (pages: Array<PageInterface>) {
-    this.pages = pages || []
+  constructor (boards: Array<BoardInterface>) {
+    this.boards = boards || []
     this.records = []
     this.tasks = []
     this.active = undefined
@@ -32,8 +32,8 @@ export default class Storyboard implements StoryboardInterface {
    * @return {Task}
    */
   add (name: string): TaskInterface {
-    const page: PageInterface = this.findPage(name)
-    const record: RecordInterface = new Record(this.recordMaxUid++, page)
+    const board: BoardInterface = this.findBoard(name)
+    const record: RecordInterface = new Record(this.recordMaxUid++, board)
     const task: TaskInterface = new Task(this.taskMaxUid++, record)
 
     this.records.push(record)
@@ -59,8 +59,8 @@ export default class Storyboard implements StoryboardInterface {
   push (name: string): StoryboardInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
       const previous: RecordInterface = this.active.record
-      const page: PageInterface = this.findPage(name)
-      const next: RecordInterface = new Record(this.recordMaxUid++, page, {
+      const board: BoardInterface = this.findBoard(name)
+      const next: RecordInterface = new Record(this.recordMaxUid++, board, {
         previous
       })
 
@@ -112,14 +112,14 @@ export default class Storyboard implements StoryboardInterface {
   }
 
   parseRecord (config: RecordData) {
-    const page = this.findPage(config.pageName)
+    const board = this.findBoard(config.boardName)
     const options = {}
 
     if (typeof config.previousId === 'number') {
       options.previous = this.findRecord(config.previousId)
     }
 
-    const record = new Record(config.uid, page, options)
+    const record = new Record(config.uid, board, options)
     this.records.push(record)
   }
 
@@ -147,9 +147,9 @@ export default class Storyboard implements StoryboardInterface {
    * @param {string} name  name of component config item
    * @return {ComponentConfig}
    */
-  findPage (name: string): PageInterface {
-    const page = this.pages.find(item => item.name === name)
-    if (!page) throw new Error(`Cannot find the page named ${name}`)
-    return page
+  findBoard (name: string): BoardInterface {
+    const board = this.boards.find(item => item.name === name)
+    if (!board) throw new Error(`Cannot find the board named ${name}`)
+    return board
   }
 }

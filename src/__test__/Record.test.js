@@ -1,10 +1,10 @@
 import Record from '../Record'
 
 describe('Record', () => {
-  let page
+  let board
 
   beforeEach(() => {
-    page = {
+    board = {
       name: 'homepage',
       component: {
         template: 'Hi'
@@ -13,10 +13,10 @@ describe('Record', () => {
   })
 
   it('returns a created record', () => {
-    const record = new Record(0, page)
+    const record = new Record(0, board)
     expect(record).toEqual({
       uid: 0,
-      page,
+      board,
       previous: undefined,
       next: undefined,
       query: undefined
@@ -24,13 +24,13 @@ describe('Record', () => {
   })
 
   it('returns added next record', () => {
-    const record = new Record(0, page)
-    const next = new Record(1, page, {
+    const record = new Record(0, board)
+    const next = new Record(1, board, {
       previous: record
     })
     expect(next).toEqual({
       uid: 1,
-      page,
+      board,
       previous: record,
       next: undefined,
       query: undefined
@@ -39,7 +39,7 @@ describe('Record', () => {
   })
 
   it('returns new query, when update record query', () => {
-    const record = new Record(0, page)
+    const record = new Record(0, board)
     record.update({
       query: {
         username: 'hi'
@@ -51,14 +51,14 @@ describe('Record', () => {
   })
 
   it('returns empty, when update empty query', () => {
-    const record = new Record(0, page)
+    const record = new Record(0, board)
     record.update({})
     expect(record.query).toEqual(undefined)
   })
 
   it('returns serialize record', () => {
-    const record = new Record(0, page)
-    const next = new Record(1, page, {
+    const record = new Record(0, board)
+    const next = new Record(1, board, {
       previous: record
     })
 
@@ -69,7 +69,7 @@ describe('Record', () => {
     })
     expect(record.serialize()).toEqual({
       uid: 0,
-      pageName: 'homepage',
+      boardName: 'homepage',
       query: {
         username: 'hi'
       },

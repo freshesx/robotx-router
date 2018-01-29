@@ -4,7 +4,7 @@ export interface QueryInterface {
   [key: string]: string | number | boolean | void | null | QueryInterface
 }
 
-export interface PageInterface {
+export interface BoardInterface {
   name: string,
   component: any,
   meta: {
@@ -14,7 +14,7 @@ export interface PageInterface {
 
 export interface RecordInterface {
   uid: number,
-  page: PageInterface,
+  board: BoardInterface,
   previous: RecordInterface | void,
   next: RecordInterface | void,
   query: QueryInterface | void,
@@ -24,7 +24,7 @@ export interface RecordInterface {
 
 export interface RecordData {
   uid: number,
-  pageName: string,
+  boardName: string,
   previousId?: number,
   nextId?: number,
   query?: QueryInterface
@@ -53,7 +53,7 @@ export interface StoryboardInterface {
   tasks: Array<TaskInterface>,
   active: TaskInterface | void,
   records: Array<RecordInterface>,
-  pages: Array<PageInterface>,
+  boards: Array<BoardInterface>,
   recordMaxUid: number,
   taskMaxUid: number,
   notify(): void,
