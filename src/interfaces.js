@@ -56,6 +56,7 @@ export interface RouterInterface {
   pages: Array<PageInterface>,
   recordMaxUid: number,
   taskMaxUid: number,
+  notify(): void,
   add(name: string): TaskInterface,
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,

@@ -23,7 +23,7 @@ export default class Router implements RouterInterface {
     this.taskMaxUid = 0
   }
 
-  notify () {
+  notify (): void {
   }
 
   /**
