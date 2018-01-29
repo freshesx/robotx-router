@@ -65,11 +65,8 @@ export interface RouterInterface {
 }
 
 export interface FeRouterInterface {
+  vueReactiveName: string,
   vms: Array<any>, // vueComponent instance
-+ store: {
-    tasks: Array<TaskInterface>,
-    active: TaskInterface
-  },
   notify(): RouterInterface,
   bind(): RouterInterface,
   install(): RouterInterface

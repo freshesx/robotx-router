@@ -8,13 +8,6 @@ export default class FeRouter extends Router {
     this.initStorage()
   }
 
-  get route () {
-    return {
-      tasks: this.tasks,
-      active: this.active
-    }
-  }
-
   install (Vue) {
     const router = this
 
