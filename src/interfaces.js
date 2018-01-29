@@ -40,7 +40,9 @@ export interface TaskData {
 export interface parsedData {
   tasks: Array<TaskData>,
   records: Array<RecordData>,
-  activeUid: number
+  activeUid: number | void,
+  recordMaxUid: number,
+  taskMaxUid: number
 }
 
 export interface RouterInterface {

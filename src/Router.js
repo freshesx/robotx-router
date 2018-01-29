@@ -80,14 +80,12 @@ export default class Router implements RouterInterface {
   }
 
   serialize (): Object {
-    const obj: {
-      tasks: Array<mixed>,
-      records: Array<mixed>,
-      activeUid?: number
-    } = {
+    const obj: parsedData = {
       tasks: this.tasks.map(task => task.serialize()),
       records: this.records.map(record => record.serialize()),
-      activeUid: this.active ? this.active.uid : undefined
+      activeUid: this.active ? this.active.uid : undefined,
+      recordMaxUid: this.recordMaxUid,
+      taskMaxUid: this.taskMaxUid
     }
     return obj
   }
@@ -103,11 +101,12 @@ export default class Router implements RouterInterface {
       this.parseTask(tasks[index])
     }
 
-    this.recordMaxUid = this.findCollectionMaxUid(this.records) + 1
-    this.taskMaxUid = this.findCollectionMaxUid(this.tasks) + 1
+    this.recordMaxUid = data.recordMaxUid
+    this.taskMaxUid = data.taskMaxUid
 
     // set active task
-    this.active = this.findTask(data.activeUid)
+    data.activeUid && (this.active = this.findTask(data.activeUid))
+
     this.notify()
     return this
   }
