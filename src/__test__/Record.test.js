@@ -19,7 +19,7 @@ describe('Record', () => {
       page,
       previous: undefined,
       next: undefined,
-      query: {}
+      query: undefined
     })
   })
 
@@ -33,7 +33,7 @@ describe('Record', () => {
       page,
       previous: record,
       next: undefined,
-      query: {}
+      query: undefined
     })
     expect(record.next).toEqual(next)
   })
@@ -53,7 +53,7 @@ describe('Record', () => {
   it('returns empty, when update empty query', () => {
     const record = new Record(0, page)
     record.update({})
-    expect(record.query).toEqual({})
+    expect(record.query).toEqual(undefined)
   })
 
   it('returns serialize record', () => {
