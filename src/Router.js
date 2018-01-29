@@ -58,13 +58,14 @@ export default class Router implements RouterInterface {
 
   push (name: string): RouterInterface {
     if (this.active instanceof Task && this.active.record instanceof Record) {
+      const previous: RecordInterface = this.active.record
       const page: PageInterface = this.findPage(name)
       const next: RecordInterface = new Record(this.recordMaxUid++, page, {
-        previous: this.active.record
+        previous
       })
 
       this.records.push(next)
-      this.active.record = next
+      this.active && (this.active.record = next) // hack for flow lint
       this.notify()
     }
     return this
@@ -82,11 +83,11 @@ export default class Router implements RouterInterface {
     const obj: {
       tasks: Array<mixed>,
       records: Array<mixed>,
-      activeUid: number
+      activeUid?: number
     } = {
       tasks: this.tasks.map(task => task.serialize()),
       records: this.records.map(record => record.serialize()),
-      activeUid: this.active.uid
+      activeUid: this.active ? this.active.uid : undefined
     }
     return obj
   }
@@ -138,13 +139,13 @@ export default class Router implements RouterInterface {
   }
 
   findRecord (uid: number): RecordInterface {
-    const record: RecordInterface = this.records.find(record => record.uid === uid)
+    const record: RecordInterface | void = this.records.find(record => record.uid === uid)
     if (!record) throw new Error(`Cannot find the record named ${uid}`)
     return record
   }
 
   findTask (uid: number): TaskInterface {
-    const task: TaskInterface = this.tasks.find(task => task.uid === uid)
+    const task: TaskInterface | void = this.tasks.find(task => task.uid === uid)
     if (!task) throw new Error(`Cannot find the task named ${uid}`)
     return task
   }
