@@ -1,10 +1,10 @@
 {
-  "name": "@robotx/router",
+  "name": "@freshes/storyboard",
   "version": "0.1.0",
-  "description": "Session router for robotx dashboard.",
+  "description": "Application storyboard, support multi-tabs, refresh and share in url address.",
   "main": "dist/main.common.js",
   "module": "dist/main.esm.js",
-  "repository": "https://github.com/freshesx/robotx-router",
+  "repository": "https://github.com/freshesx/storyboard",
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
   "license": "MIT",
   "scripts": {
