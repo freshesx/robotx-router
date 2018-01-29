@@ -129,14 +129,6 @@ export default class Router implements RouterInterface {
     this.tasks.push(task)
   }
 
-  findCollectionMaxUid (collection: Array<TaskInterface|RecordInterface>): number {
-    let uid: number = 0
-    collection.forEach((item: { uid: number }) => {
-      if (item.uid > uid) uid = item.uid
-    })
-    return uid
-  }
-
   findRecord (uid: number): RecordInterface {
     const record: RecordInterface | void = this.records.find(record => record.uid === uid)
     if (!record) throw new Error(`Cannot find the record named ${uid}`)
