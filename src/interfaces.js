@@ -15,10 +15,10 @@ export interface PageInterface {
 export interface RecordInterface {
   uid: number,
   page: PageInterface,
-  previous: ?RecordInterface,
-  next: ?RecordInterface,
-  query: ?Object,
-  update(options: { query?: Object }): void, // @todo: update options interface
+  previous: RecordInterface | void,
+  next: RecordInterface | void,
+  query: QueryInterface | void,
+  update(options: { query?: QueryInterface }): void, // @todo: update options interface
   serialize(): Object
 }
 

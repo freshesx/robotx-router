@@ -1,6 +1,6 @@
 // @flow
 
-import { PageInterface, RecordInterface } from './interfaces'
+import { PageInterface, RecordInterface, QueryInterface } from './interfaces'
 
 interface CtorOptions {
   previous?: RecordInterface
@@ -9,14 +9,14 @@ interface CtorOptions {
 export default class Record implements RecordInterface {
   uid: number
   page: PageInterface
-  query: ?Object
-  previous: ?RecordInterface
-  next: ?RecordInterface
+  query: QueryInterface | void
+  previous: RecordInterface | void
+  next: RecordInterface | void
 
   constructor (uid: number, page: PageInterface, options: CtorOptions = {}) {
     this.uid = uid
     this.page = page
-    this.query = {}
+    this.query = undefined
     this.previous = undefined
     this.next = undefined
 
