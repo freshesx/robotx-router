@@ -3,6 +3,7 @@ import Router from './Router'
 export default class FeRouter extends Router {
   constructor (...args) {
     super(...args)
+    this.vueReactiveName = 'storyboard'
     this.vms = []
     this.initStorage()
   }
@@ -20,11 +21,11 @@ export default class FeRouter extends Router {
     Vue.mixin({
       beforeCreate () {
         router.bind(this)
-        Vue.util.defineReactive(this, '_feRouter', router)
+        Vue.util.defineReactive(this, `_${this.vueReactiveName}`, router)
       }
     })
 
-    Object.defineProperty(Vue.prototype, '$feRouter', {
+    Object.defineProperty(Vue.prototype, `$${this.vueReactiveName}`, {
       get () {
         return router
       }
@@ -49,12 +50,12 @@ export default class FeRouter extends Router {
     super.notify(...args)
     // notify vue to update reactive data
     this.vms.forEach(vm => {
-      vm._feRouter = this
+      vm[`_${this.vueReactiveName}`] = this
     })
     // Save to session storage
     if (window.sessionStorage) {
       const str = JSON.stringify(this.serialize())
-      window.sessionStorage.setItem('FE_ROUTER', str)
+      window.sessionStorage.setItem(`FRESH_${this.vueReactiveName.toUpperCase()}`, str)
     }
     return this
   }
@@ -62,7 +63,7 @@ export default class FeRouter extends Router {
   initStorage () {
     if (!window.sessionStorage) return
 
-    const str = window.sessionStorage.getItem('FE_ROUTER')
+    const str = window.sessionStorage.getItem(`FRESH_${this.vueReactiveName.toUpperCase()}`)
 
     if (!str) return
 
