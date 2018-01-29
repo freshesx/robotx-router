@@ -20,19 +20,13 @@ export default class FeRouter extends Router {
     Vue.mixin({
       beforeCreate () {
         router.bind(this)
-        Vue.util.defineReactive(this, '_feRoute', router.route)
+        Vue.util.defineReactive(this, '_feRouter', router)
       }
     })
 
     Object.defineProperty(Vue.prototype, '$feRouter', {
       get () {
         return router
-      }
-    })
-
-    Object.defineProperty(Vue.prototype, '$feRoute', {
-      get () {
-        return this._feRoute
       }
     })
 
@@ -55,7 +49,7 @@ export default class FeRouter extends Router {
     super.notify(...args)
     // notify vue to update reactive data
     this.vms.forEach(vm => {
-      vm._feRoute = this.route
+      vm._feRouter = this
     })
     // Save to session storage
     if (window.sessionStorage) {

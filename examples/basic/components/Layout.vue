@@ -9,8 +9,8 @@
     <div class="tasks">
       <div
         class="task"
-        :class="{ 'is-active': $feRoute.active && $feRoute.active.uid === task.uid }"
-        v-for="task in $feRoute.tasks" :key="task.uid"
+        :class="{ 'is-active': $feRouter.active && $feRouter.active.uid === task.uid }"
+        v-for="task in $feRouter.tasks" :key="task.uid"
         @click="activeTask(task, $event)"
       >{{ task.uid }}</div>
       <div class="task task-plus" @click="addTask">+</div>

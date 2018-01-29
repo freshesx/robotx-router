@@ -3,9 +3,9 @@ import FeRouterView from './FeRouterView'
 export default {
   name: 'FeRouterViews',
   render (h) {
-    const children = this.$feRoute.tasks.map(task => {
-      const isActive = this.$feRoute.active &&
-        this.$feRoute.active.uid === task.uid
+    const children = this.$feRouter.tasks.map(task => {
+      const isActive = this.$feRouter.active &&
+        this.$feRouter.active.uid === task.uid
 
       return h(
         FeRouterView,
