@@ -1,6 +1,6 @@
 // @flow
 
-import { PageInterface, TaskInterface, RecordInterface, StoryboardInterface, StorageData, RecordData, TaskData } from './interfaces'
+import type { PageInterface, TaskInterface, RecordInterface, StoryboardInterface, StorageData, RecordData, TaskData } from './interfaces'
 import Record from './Record'
 import Task from './Task'
 

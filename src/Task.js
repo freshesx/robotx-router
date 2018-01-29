@@ -1,6 +1,6 @@
 // @flow
 
-import { TaskInterface, RecordInterface } from './interfaces'
+import type { TaskInterface, RecordInterface } from './interfaces'
 
 export default class Task implements TaskInterface {
   uid: number

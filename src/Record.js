@@ -1,6 +1,6 @@
 // @flow
 
-import { PageInterface, RecordInterface, QueryInterface } from './interfaces'
+import type { PageInterface, RecordInterface, QueryInterface } from './interfaces'
 
 interface CtorOptions {
   previous?: RecordInterface
