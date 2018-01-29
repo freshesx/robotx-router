@@ -22,8 +22,8 @@ export default class Record implements RecordInterface {
 
     // If the previous is exist
     if (options.previous instanceof Record) {
-      this.previous = options.previous
       options.previous.next = this
+      this.previous = options.previous
     }
   }
 
