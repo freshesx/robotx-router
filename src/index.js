@@ -1,9 +1,11 @@
-import FeRouter from './FeRouter'
+import VueStoryboard from './VueStoryboard'
 import StoryboardViews from './components/StoryboardViews'
 import StoryboardView from './components/StoryboardView'
 
 export {
-  FeRouter,
+  VueStoryboard as Storyboard,
   StoryboardViews,
   StoryboardView
 }
+
+export default VueStoryboard

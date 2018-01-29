@@ -1,6 +1,6 @@
 import Storyboard from './Storyboard'
 
-export default class FeRouter extends Storyboard {
+export default class VueStoryboard extends Storyboard {
   constructor (...args) {
     super(...args)
     this.vueReactiveName = 'storyboard'
