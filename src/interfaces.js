@@ -27,7 +27,7 @@ export interface RecordData {
   pageName: string,
   previousId?: number,
   nextId?: number,
-  query?: Object
+  query?: QueryInterface
 }
 
 export interface TaskInterface {
