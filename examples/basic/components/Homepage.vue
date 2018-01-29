@@ -23,7 +23,7 @@ export default {
   methods: {
     submit (event) {
       event.preventDefault()
-      this.$feRouter.update({
+      this.$storyboard.update({
         query: this.models
       })
     }

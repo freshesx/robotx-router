@@ -9,8 +9,8 @@
     <div class="tasks">
       <div
         class="task"
-        :class="{ 'is-active': $feRouter.active && $feRouter.active.uid === task.uid }"
-        v-for="task in $feRouter.tasks" :key="task.uid"
+        :class="{ 'is-active': $storyboard.active && $storyboard.active.uid === task.uid }"
+        v-for="task in $storyboard.tasks" :key="task.uid"
         @click="activeTask(task, $event)"
       >{{ task.uid }}</div>
       <div class="task task-plus" @click="addTask">+</div>
@@ -23,20 +23,20 @@
 export default {
   methods: {
     addTask () {
-      this.$feRouter.add('homepage')
+      this.$storyboard.add('homepage')
     },
     pushTask (name) {
-      this.$feRouter.push(name)
+      this.$storyboard.push(name)
     },
     activeTask (task) {
-      this.$feRouter.activate(task)
+      this.$storyboard.activate(task)
     },
     serialize () {
-      console.log(this.$feRouter.serialize())
+      console.log(this.$storyboard.serialize())
     }
   },
   created () {
-    this.$feRouter.default('homepage')
+    this.$storyboard.default('homepage')
   }
 }
 </script>
