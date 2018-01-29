@@ -41,7 +41,7 @@ export interface TaskData {
   recordId: number
 }
 
-export interface storageData {
+export interface StorageData {
   tasks: Array<TaskData>,
   records: Array<RecordData>,
   activeUid: number | void,
@@ -60,7 +60,7 @@ export interface RouterInterface {
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,
   serialize(): Object,
-  parse(data: storageData): RouterInterface
+  parse(data: StorageData): RouterInterface
 }
 
 export interface FeRouterInterface {
