@@ -60,7 +60,7 @@ export interface RouterInterface {
   add(name: string): TaskInterface,
   push(name: string): RouterInterface,
   activate(task: TaskInterface): RouterInterface,
-  serialize(): Object,
+  serialize(): StorageData,
   parse(data: StorageData): RouterInterface
 }
 
