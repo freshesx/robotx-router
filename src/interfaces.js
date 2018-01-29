@@ -4,7 +4,7 @@ export interface PageInterface {
   name: string,
   component: any,
   meta: {
-    [key: string]: string | number | boolean | void
+    [key: string]: any
   }
 }
 
